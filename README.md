@@ -22,10 +22,10 @@ _http://localhost:8088/smart-api/h2-console/_
 #### **`Spring Boot 2`**   
    _https://spring.io/projects/spring-boot#learn_
 
-#### **`Open Apis / Swagger 2 / Spring Fox 2.9.X`**   
-   _https://www.openapis.org/_   
-   _https://swagger.io/_   
-   _https://springfox.github.io/springfox/_
+#### **`Open Apis 3 / Swagger / Spring Fox 3`**   
+   _http://spec.openapis.org/oas/v3.0.3_   
+   _https://swagger.io/specification/_   
+   _http://springfox.github.io/springfox/docs/current/_
 
 #### **`Apache Maven 3.6.X`**   
    _https://maven.apache.org/_
