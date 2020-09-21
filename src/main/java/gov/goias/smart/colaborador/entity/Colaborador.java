@@ -37,8 +37,4 @@ public class Colaborador implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "INDI_SEXO", length = 20)
     private Sexo sexo;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "STAT_SITUACAO_COLABORA", length = 20)
-    private Situacao situacao;
 }

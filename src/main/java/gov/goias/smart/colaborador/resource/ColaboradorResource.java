@@ -3,12 +3,13 @@ package gov.goias.smart.colaborador.resource;
 import gov.goias.smart.colaborador.dto.ColaboradorDTO;
 import gov.goias.smart.colaborador.entity.Colaborador;
 import gov.goias.smart.colaborador.entity.Sexo;
-import gov.goias.smart.colaborador.entity.Situacao;
 import gov.goias.smart.colaborador.repository.ColaboradorRepository;
 import gov.goias.smart.colaborador.service.ColaboradorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -52,25 +53,29 @@ public class ColaboradorResource {
     public void delete(@PathVariable Long id) {
 
         log.trace("DELETE {id}", id);
+
         service.deleteById(id);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Listar todos Colaboradores.", notes = "Listar todos Colaboradores.")
-    public Collection<Colaborador> list() {
+    public Collection<ColaboradorDTO> list() {
 
         log.trace("GET findAll");
 
-        return repository.findAll();
+        java.lang.reflect.Type targetListType = new TypeToken<Collection<ColaboradorDTO>>() {}.getType();
+        return new ModelMapper().map(repository.findAll(), targetListType);
     }
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Retorna o colaborador pelo seu Identificador.", notes = "Obter colaborador por Identificador.")
-    public Colaborador findById(@PathVariable Long id) {
+    public ColaboradorDTO findById(@PathVariable Long id) {
 
         log.trace("GET {id}", id);
 
-        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Colaborador : " + id));
+        java.lang.reflect.Type targetListType = new TypeToken<Collection<ColaboradorDTO>>() {}.getType();
+        Colaborador colaborador = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Colaborador : " + id));
+        return new ModelMapper().map(colaborador, targetListType);
     }
 
     @GetMapping(path = "/sexos", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -80,14 +85,5 @@ public class ColaboradorResource {
         log.trace("GET Lista Sexo Colaborador");
 
         return Arrays.asList(Sexo.values());
-    }
-
-    @GetMapping(path = "/situacoes", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Listar todos as Situações de Colaboradores.", notes = "Listar todas as Situações dos Colaboradores.")
-    public Collection<Situacao> situacoes() {
-
-        log.trace("GET Lista Situação Colaborador");
-
-        return Arrays.asList(Situacao.values());
     }
 }

@@ -1,7 +1,6 @@
 package gov.goias.smart.colaborador.dto;
 
 import gov.goias.smart.colaborador.entity.Sexo;
-import gov.goias.smart.colaborador.entity.Situacao;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,24 +17,21 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ColaboradorDTO implements Serializable {
 
-    @Schema(description = "Identificador do colaborador")
+    @Schema(description = "Identificador do Colaborador")
     private Long id;
 
-    @Schema(description = "Nome do colaborador")
+    @Schema(description = "Nome do Colaborador")
     private String nome;
 
-    @Schema(description = "Email do colaborador")
+    @Schema(description = "Email do Colaborador")
     private String email;
 
-    @Schema(description = "Cpf do colaborador")
+    @Schema(description = "Cpf do Colaborador")
     private String cpf;
 
-    @Schema(description = "Data de Nascimento do colaborador")
+    @Schema(description = "Data de Nascimento do Colaborador")
     private LocalDate dataNascimento;
 
-    @Schema(description = "Sexo do colaborador")
+    @Schema(description = "Sexo do Colaborador")
     private Sexo sexo;
-
-    @Schema(description = "Situacao do colaborador")
-    private Situacao situacao;
 }
