@@ -14,7 +14,7 @@
     <artifactId>smart-openapi-springboot</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
-    <name>Smart OpenApi SpringBoot</name>
+    <name>Smart Api</name>
     <description>Sistema Modelo de Arquitetura e Tecnologia da Informacao</description>
 
     <properties>
